@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Keys xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Key Name="Play">
+		<Translates>
+			<en-us>Play</en-us>
+			<ru>Играть</ru>
+			<ua>Jugar</ua>
+		</Translates>
+	</Key>
+	<Key Name="Лучшее время:">
+		<Translates>
+			<en-us>Your best time:</en-us>
+			<ru>Лучшее время:</ru>
+			<ua>Tu mejor momento:</ua>
+		</Translates>
+	</Key>
+	<Key Name="Общее время:">
+		<Translates>
+			<en-us>Your total time:</en-us>
+			<ru>Общее время:</ru>
+			<ua>Tu tiempo total:</ua>
+		</Translates>
+	</Key>
+	<Key Name="Время:">
+		<Translates>
+			<en-us>Time:</en-us>
+			<ru>Время:</ru>
+			<ua>Hora:</ua>
+		</Translates>
+	</Key>
+	<Key Name="Тренировка скорости и памяти">
+		<Translates>
+			<en-us>Speed ​​and memory training</en-us>
+			<ru>Тренировка скорости и памяти</ru>
+			<ua>Entrenamiento de velocidad y memoria</ua>
+		</Translates>
+	</Key>
+	<Key Name="Нажмите на цвета в правильной последовательности">
+		<Translates>
+			<en-us>Click on the colors in the correct sequence</en-us>
+			<ru>Нажмите на цвета в правильной последовательности</ru>
+			<ua>Haga clic en los colores en la secuencia correcta</ua>
+		</Translates>
+	</Key>
+	<Key Name="ВЫ ПРОШЛИ
+ИГРУ!!!">
+		<Translates>
+			<en-us>YOU PASSED
+THE GAME !!!</en-us>
+			<ru>ВЫ ПРОШЛИ
+ИГРУ!!!</ru>
+			<ua>¡¡¡PASASTE EL JUEGO !!!</ua>
+		</Translates>
+	</Key>
+	<Key Name="ВЫ
+ПОБЕДИЛИ!!!">
+		<Translates>
+			<en-us>YOU WON!!!</en-us>
+			<ru>ВЫ 
+ПОБЕДИЛИ!!!</ru>
+			<ua>¡¡¡GANASTE!!!</ua>
+		</Translates>
+	</Key>
+	<Key Name="Попробуйте еще раз">
+		<Translates>
+			<en-us>Try again</en-us>
+			<ru>Попробуйте еще раз</ru>
+			<ua>Inténtalo de nuevo</ua>
+		</Translates>
+	</Key>
+	<Key Name="Restart">
+		<Translates>
+			<en-us>Restart</en-us>
+			<ru>Перезапустить</ru>
+			<ua>Reiniciar</ua>
+		</Translates>
+	</Key>
+	<Key Name="1 уровень">
+		<Translates>
+			<en-us>1 level</en-us>
+			<ru>1 уровень</ru>
+			<ua>1 nivel</ua>
+		</Translates>
+	</Key>
+	<Key Name="2 уровень">
+		<Translates>
+			<en-us>2 level</en-us>
+			<ru>2 уровень</ru>
+			<ua>2 nivel</ua>
+		</Translates>
+	</Key>
+	<Key Name="3 уровень">
+		<Translates>
+			<en-us>3 level</en-us>
+			<ru>3 уровень</ru>
+			<ua>3 nivel</ua>
+		</Translates>
+	</Key>
+	<Key Name="4 уровень">
+		<Translates>
+			<en-us>4 level</en-us>
+			<ru>4 уровень</ru>
+			<ua>4 nivel</ua>
+		</Translates>
+	</Key>
+	<Key Name="5 уровень">
+		<Translates>
+			<en-us>5 level</en-us>
+			<ru>5 уровень</ru>
+			<ua>5 nivel</ua>
+		</Translates>
+	</Key>
+	<Key Name="6 уровень">
+		<Translates>
+			<en-us>6 level</en-us>
+			<ru>6 уровень</ru>
+			<ua>6 nivel</ua>
+		</Translates>
+	</Key>
+	<Key Name="7 уровень">
+		<Translates>
+			<en-us>7 level</en-us>
+			<ru>7 уровень</ru>
+			<ua>7 nivel</ua>
+		</Translates>
+	</Key>
+	<Key Name="8 уровень">
+		<Translates>
+			<en-us>8 level</en-us>
+			<ru>8 уровень</ru>
+			<ua>8 nivel</ua>
+		</Translates>
+	</Key>
+	<Key Name="Вы уверены что хотите выйти?">
+		<Translates>
+			<en-us>Are you sure you want to log out?</en-us>
+			<ru>Вы уверены что хотите выйти?</ru>
+			<ua>¿Está seguro de que desea cerrar la sesión?</ua>
+		</Translates>
+	</Key>
+	<Key Name="Да">
+		<Translates>
+			<en-us>Yes</en-us>
+			<ru>Да</ru>
+			<ua>Si</ua>
+		</Translates>
+	</Key>
+	<Key Name="Нет">
+		<Translates>
+			<en-us>No</en-us>
+			<ru>Нет</ru>
+			<ua>No</ua>
+		</Translates>
+	</Key>
+	<Key Name="Best time:">
+		<Translates>
+			<en-us>Best time:</en-us>
+			<ru>Лучшее время:</ru>
+			<ua>Mejor tiempo:</ua>
+		</Translates>
+	</Key>
+	<Key Name="Попробуйте еще раз!">
+		<Translates>
+			<en-us>Try again!</en-us>
+			<ru>Попробуйте еще раз!</ru>
+			<ua>¡Inténtalo de nuevo!</ua>
+		</Translates>
+	</Key>
+	<Key Name="Green">
+		<Translates>
+			<en-us>Green</en-us>
+			<ru>Зеленый</ru>
+			<ua>Verde</ua>
+		</Translates>
+	</Key>
+	<Key Name="Red">
+		<Translates>
+			<en-us>Red</en-us>
+			<ru>Красный</ru>
+			<ua>Rojo</ua>
+		</Translates>
+	</Key>
+	<Key Name="Blue">
+		<Translates>
+			<en-us>Blue</en-us>
+			<ru>Синий</ru>
+			<ua>Azul</ua>
+		</Translates>
+	</Key>
+	<Key Name="Purple">
+		<Translates>
+			<en-us>Purple</en-us>
+			<ru>Фиолетовый</ru>
+			<ua>Púrpura</ua>
+		</Translates>
+	</Key>
+	<Key Name="Orange">
+		<Translates>
+			<en-us>Orange</en-us>
+			<ru>Оранжевый</ru>
+			<ua>Naranja</ua>
+		</Translates>
+	</Key>
+	<Key Name="Brown">
+		<Translates>
+			<en-us>Brown</en-us>
+			<ru>Коричневый</ru>
+			<ua>Marrón</ua>
+		</Translates>
+	</Key>
+	<Key Name="Ping">
+		<Translates>
+			<en-us>Ping</en-us>
+			<ru>Розовый</ru>
+			<ua>Rosado</ua>
+		</Translates>
+	</Key>
+	<Key Name="Black">
+		<Translates>
+			<en-us>Black</en-us>
+			<ru>Черный</ru>
+			<ua>El negro</ua>
+		</Translates>
+	</Key>
+	<Key Name="Yellow">
+		<Translates>
+			<en-us>Yellow</en-us>
+			<ru>Желтый</ru>
+			<ua>Amarillo</ua>
+		</Translates>
+	</Key>
+	<Key Name="Click on the corresponding color">
+		<Translates>
+			<en-us>Click on the corresponding color</en-us>
+			<ru>Нажмите на соответствующий цвет</ru>
+			<ua>Haga clic en el color correspondiente</ua>
+		</Translates>
+	</Key>
+	<Key Name="Mode selection">
+		<Translates>
+			<en-us>Mode selection</en-us>
+			<ru>Выбор режима</ru>
+			<ua>Selección de modo</ua>
+		</Translates>
+	</Key>
+	<Key Name="You need to select the color of the corresponding inscription above in 4 seconds (time is shown on the left)">
+		<Translates>
+			<en-us>You need to select the color of the corresponding inscription above in 4 seconds (time is shown on the left)</en-us>
+			<ru>Вам необходимо за 4с (время показывается слева) выбрать цвет соотвествующей надписи выше</ru>
+			<ua>Debe seleccionar el color de la inscripción correspondiente arriba en 4 segundos (el tiempo se muestra a la izquierda)</ua>
+		</Translates>
+	</Key>
+</Keys>
