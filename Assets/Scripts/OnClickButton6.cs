@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
-using UnityEngine.Monetization;
 using UnityEngine.UI;
 
 public class OnClickButton6 : MonoBehaviour {

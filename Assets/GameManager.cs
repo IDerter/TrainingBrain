@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
 using UnityEngine.SceneManagement;
-using UnityEngine.Monetization;
-public class GameManager : MonoBehaviour {
+
+public class GameManager : MonoBehaviour, IUnityAdsInitializationListener, IUnityAdsLoadListener, IUnityAdsShowListener
+{
     public GameObject panel;
     public GameObject gameOverCanvas;
     public GameObject Canvas;
@@ -27,188 +28,262 @@ public class GameManager : MonoBehaviour {
     public Button level5B;
     public Button level6B;
     public Button level7B;
-    //public Button level5B;
     public int levelComplete;
-    // Use this for initialization
+
+    private string gameId = "3575188";
+    private string interstitialAd = "Android_Interstitial";
+    private bool adsInitialized = false;
+    private bool waitingForAd = false;
+    private bool adLoaded = false;
+
     private void Start()
     {
         Screen.orientation = ScreenOrientation.Portrait;
         Time.timeScale = 1;
-       // Advertisement.Initialize("3575188", false);
+
+        InitializeAds();
+
         levelComplete = PlayerPrefs.GetInt("LevelComplete");
 
-        level1B.interactable = false;
-        level2B.interactable = false;
-        level3B.interactable = false;
-        level4B.interactable = false;
-      //  level5B.interactable = false;
+        if (level1B != null)
+            level1B.interactable = false;
+        if (level2B != null)
+            level2B.interactable = false;
+        if (level3B != null)
+            level3B.interactable = false;
+        if (level4B != null)
+            level4B.interactable = false;
+
         switch (levelComplete)
         {
             case 1:
-                level1B.interactable = true;
+                if (level1B != null)
+                    level1B.interactable = true;
                 break;
             case 2:
-                level1B.interactable = true;
-                level2B.interactable = true;
+                if (level1B != null)
+                    level1B.interactable = true;
+                if (level2B != null)
+                    level2B.interactable = true;
                 break;
             case 3:
-                level1B.interactable = true;
-                level2B.interactable = true;
-                level3B.interactable = true;
+                if (level1B != null)
+                    level1B.interactable = true;
+                if (level2B != null)
+                    level2B.interactable = true;
+                if (level3B != null)
+                    level3B.interactable = true;
                 break;
             case 4:
-                level1B.interactable = true;
-                level2B.interactable = true;
-                level3B.interactable = true;
-                level4B.interactable = true;
+                if (level1B != null)
+                    level1B.interactable = true;
+                if (level2B != null)
+                    level2B.interactable = true;
+                if (level3B != null)
+                    level3B.interactable = true;
+                if (level4B != null)
+                    level4B.interactable = true;
                 break;
             case 5:
-                level1B.interactable = true;
-                level2B.interactable = true;
-                level3B.interactable = true;
-                level4B.interactable = true;
-                level5B.interactable = true;
+                if (level1B != null)
+                    level1B.interactable = true;
+                if (level1B != null)
+                    level2B.interactable = true;
+                if (level1B != null)
+                    level3B.interactable = true;
+                if (level1B != null)
+                    level4B.interactable = true;
+                if (level1B != null)
+                    level5B.interactable = true;
                 break;
             case 6:
-                level1B.interactable = true;
-                level2B.interactable = true;
-                level3B.interactable = true;
-                level4B.interactable = true;
-                level5B.interactable = true;
-                level6B.interactable = true;
+                if (level1B != null)
+                    level1B.interactable = true;
+                if (level2B != null)
+                    level2B.interactable = true;
+                if (level3B != null)
+                    level3B.interactable = true;
+                if (level4B != null)
+                    level4B.interactable = true;
+                if (level5B != null)
+                    level5B.interactable = true;
+                if (level6B != null)
+                    level6B.interactable = true;
                 break;
             case 7:
-                level1B.interactable = true;
-                level2B.interactable = true;
-                level3B.interactable = true;
-                level4B.interactable = true;
-                level5B.interactable = true;
-                level6B.interactable = true;
-                level7B.interactable = true;
+                if (level1B != null)
+                    level1B.interactable = true;
+                if (level2B != null)
+                    level2B.interactable = true;
+                if (level3B != null)
+                    level3B.interactable = true;
+                if (level4B != null)
+                    level4B.interactable = true;
+                if (level5B != null)
+                    level5B.interactable = true;
+                if (level6B != null)
+                    level6B.interactable = true;
+                if (level7B != null)
+                    level7B.interactable = true;
                 break;
-                // case 5:
-                // level1B.interactable = true;
-                //  level2B.interactable = true;
-                //  level3B.interactable = true;
-                //  level4B.interactable = true;
-                //  level5B.interactable = true;
-                //  break;
+        }
+    }
 
-                /* if (Monetization.isSupported)
-                 {
-                     Monetization.Initialize("3575188", false);
-                 }
-                 */
-        }
-    }
-        void Update()
+    private void InitializeAds()
     {
-        /*
-    
-        if (levelChanger.activeSelf == true && Input.GetKeyDown(KeyCode.Escape))
+        Debug.Log("InitializeAds start");
+        if (!Advertisement.isInitialized && Advertisement.isSupported)
         {
-            levelChanger.SetActive(false);
-            playbutton.SetActive(true);
-            exitbutton.SetActive(true);
-            settingsbutton.SetActive(true);
+            Advertisement.Initialize(gameId, false, this);
         }
-        if (panelchooseregim.activeSelf == true && Input.GetKeyDown(KeyCode.Escape))
+        else
         {
-            panelchooseregim.SetActive(false);
-            playbutton.SetActive(true);
-            exitbutton.SetActive(true);
-            settingsbutton.SetActive(true);
+            adsInitialized = true;
+            Debug.Log("Загружаем рекламу после инициализации");
+            Advertisement.Load(interstitialAd, this);
         }
-        else if (ExitPanel.activeSelf == false && Input.GetKeyDown(KeyCode.Escape)&&panel.activeSelf==false)
-        {
-            playbutton.SetActive(false);
-            exitbutton.SetActive(false);
-            settingsbutton.SetActive(false);
-            ExitPanel.SetActive(true);
-        }
-        
-        else if (Input.GetKeyDown(KeyCode.Escape) && panel.activeSelf==true && ExitPanel.activeSelf == false)
-        {
-            panel.SetActive(false);
-            playbutton.SetActive(true);
-            exitbutton.SetActive(true);
-            settingsbutton.SetActive(true);
-            Debug.Log("SETTINGS");
-        }*/
     }
+
+    public void OnInitializationComplete()
+    {
+        Debug.Log("Ads initialization complete");
+        adsInitialized = true;
+        Advertisement.Load(interstitialAd, this);
+    }
+
+    public void OnInitializationFailed(UnityAdsInitializationError error, string message)
+    {
+        Debug.Log($"Ads initialization failed: {error} - {message}");
+        adsInitialized = false;
+    }
+
+    public void OnUnityAdsAdLoaded(string placementId)
+    {
+        Debug.Log($"Ad loaded: {placementId}");
+        adLoaded = true;
+    }
+
+    public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
+    {
+        Debug.Log($"Error loading ad {placementId}: {error} - {message}");
+        adLoaded = false;
+        // Пытаемся загрузить снова через 2 секунды
+        StartCoroutine(ReloadAdAfterDelay(2f));
+    }
+
+    private IEnumerator ReloadAdAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Advertisement.Load(interstitialAd, this);
+    }
+
+    public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
+    {
+        Debug.Log($"Error showing ad {placementId}: {error} - {message}");
+        adLoaded = false;
+        Advertisement.Load(interstitialAd, this);
+
+        // Если реклама не показалась, все равно продолжаем
+        if (waitingForAd)
+        {
+            waitingForAd = false;
+            CompleteReplay();
+        }
+    }
+
+    public void OnUnityAdsShowStart(string placementId)
+    {
+        Debug.Log("Ad show start");
+        Time.timeScale = 0; // Останавливаем игру на время показа рекламы
+    }
+
+    public void OnUnityAdsShowClick(string placementId)
+    {
+        Debug.Log("Ad clicked");
+    }
+
+    public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
+    {
+        Debug.Log("Ad show complete");
+        Time.timeScale = 1; // Возобновляем игру
+        adLoaded = false;
+        Advertisement.Load(interstitialAd, this);
+
+        // Завершаем перезагрузку уровня после показа рекламы
+        if (waitingForAd)
+        {
+            waitingForAd = false;
+            CompleteReplay();
+        }
+    }
+
     public void LoadTo(int level)
     {
         SceneManager.LoadScene(level);
     }
+
     public void GameOver()
     {
         gameOverCanvas.SetActive(true);
-       // Canvas.SetActive(false);
         Time.timeScale = 0;
-
-
     }
+
     public void Replay()
     {
         numberdeaths++;
         gameOverCanvas.SetActive(false);
-       
-        if (numberdeaths % 2 == 0)
+        Debug.Log($"До показа рекламы {numberdeaths}");
+
+        // Проверяем, нужно ли показывать рекламу и загружена ли она
+        if (numberdeaths % 2 == 0 && adLoaded)
         {
+            Debug.Log("Показываем рекламу");
+            waitingForAd = true;
             ShowUnityAd();
         }
-       
-        
-        Application.LoadLevel(Application.loadedLevel);
+        else
+        {
+            // Если реклама не загружена или не нужно показывать, сразу перезагружаем уровень
+            CompleteReplay();
+        }
     }
+
+    private void CompleteReplay()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void ShowUnityAd()
     {
-        Advertisement.Show();
+        Debug.Log("ShowUnityAd");
+        Advertisement.Show(interstitialAd, this);
     }
+
     IEnumerator WaitAndPrint(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        Application.LoadLevel("1Lvl");
+        SceneManager.LoadScene("1Lvl");
     }
-    /*void HandleShowResult()
-    {
-        if (result == ShowResult.Finished)
-        {
 
-        }
-        else if (result == ShowResult.Skipped)
-        {
-
-        }
-        else if (result == ShowResult.Skipped)
-        {
-
-        }
-    }
-    */
+    // Остальные методы остаются без изменений
     public void ChooseRegim()
     {
         panelchooseregim.SetActive(true);
         playbutton.SetActive(false);
         exitbutton.SetActive(false);
         settingsbutton.SetActive(false);
-        // Application.LoadLevel("1Lvl");
         GetComponent<AudioSource>().Play();
-
     }
+
     public void Play()
     {
         levelChanger.SetActive(true);
         playbutton.SetActive(false);
         exitbutton.SetActive(false);
         settingsbutton.SetActive(false);
-        // Application.LoadLevel("1Lvl");
         GetComponent<AudioSource>().Play();
-       // if (winlvl % 3 == 0)
-      //  {
-        //    ShowUnityAd();
-      //  }
     }
+
     public void PlayOldRegim()
     {
         levelChanger.SetActive(true);
@@ -216,24 +291,21 @@ public class GameManager : MonoBehaviour {
         playbutton.SetActive(false);
         exitbutton.SetActive(false);
         settingsbutton.SetActive(false);
-        // Application.LoadLevel("1Lvl");
         GetComponent<AudioSource>().Play();
-        // if (winlvl % 3 == 0)
-        //  {
-        //    ShowUnityAd();
-        //  }
     }
+
     public void NewRegim()
     {
         GetComponent<AudioSource>().Play();
-        Application.LoadLevel("NewRegim");
+        SceneManager.LoadScene("NewRegim");
     }
+
     public void Exit1Lvl()
     {
-
-        Application.LoadLevel("Menu");
+        SceneManager.LoadScene("Menu");
         GetComponent<AudioSource>().Play();
     }
+
     public void OnClickExit()
     {
         GetComponent<AudioSource>().Play();
@@ -241,8 +313,8 @@ public class GameManager : MonoBehaviour {
         exitbutton.SetActive(false);
         settingsbutton.SetActive(false);
         ExitPanel.SetActive(true);
-        //Application.Quit();
     }
+
     public void Settings()
     {
         GetComponent<AudioSource>().Play();
@@ -253,37 +325,41 @@ public class GameManager : MonoBehaviour {
         volume1button.SetActive(true);
         volume2button.SetActive(true);
     }
+
     public void ExitPanel1()
     {
         panel.SetActive(false);
         playbutton.SetActive(true);
         exitbutton.SetActive(true);
         settingsbutton.SetActive(true);
-
     }
+
     public void ExitPanelChooseRegim()
     {
         playbutton.SetActive(true);
         exitbutton.SetActive(true);
         settingsbutton.SetActive(true);
         panelchooseregim.SetActive(false);
-
     }
+
     public void Volume()
     {
         GetComponent<AudioSource>().Play();
         AudioListener.volume = 1;
     }
+
     public void DontVolume()
     {
         GetComponent<AudioSource>().Play();
         AudioListener.volume = 0;
     }
+
     public void VK()
     {
         GetComponent<AudioSource>().Play();
         Application.OpenURL("https://vk.com/public181912670");
     }
+
     public void OnClickNo()
     {
         playbutton.SetActive(true);
@@ -291,12 +367,11 @@ public class GameManager : MonoBehaviour {
         settingsbutton.SetActive(true);
         GetComponent<AudioSource>().Play();
         ExitPanel.SetActive(false);
-
     }
+
     public void OnClickYes()
     {
         GetComponent<AudioSource>().Play();
         Application.Quit();
     }
-    
 }

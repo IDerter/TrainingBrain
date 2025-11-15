@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
 using UnityEngine.SceneManagement;
-using UnityEngine.Monetization;
+
 public class LevelController : MonoBehaviour
 {
     public static LevelController instance = null;
@@ -52,8 +52,9 @@ public class LevelController : MonoBehaviour
     {
         SceneManager.LoadScene("Menu");
     }
+
     public void ShowUnityAd()
     {
-        Advertisement.Show();
+        Advertisement.Show("3575188");
     }
 }
