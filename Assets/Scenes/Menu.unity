@@ -3617,8 +3617,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c34dc11f7491beb4cb5c5bc588e57606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _androidAdUnityId: Rewarded_Android
-  _iosAdUnityId: Rewarded_iOS
+  _androidAdUnityId: Android_Rewarded
+  _iosAdUnityId: iOS_Rewarded
   _toDelete: {fileID: 0}
 --- !u!114 &1094614488
 MonoBehaviour:

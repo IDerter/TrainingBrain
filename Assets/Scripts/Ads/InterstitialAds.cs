@@ -21,12 +21,13 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSh
 	public void LoadInterstitialAd()
 	{
 		Advertisement.Load(_adUnitId, this);
+		Debug.Log("LoadInterstitialAd");
 	}
 
 	public void ShowInterstitialAd()
 	{
 		LoadInterstitialAd();
-
+		Debug.Log("StartCoroutine InterstitialDelayShow");
 		StartCoroutine(InterstitialDelayShow());
 
 	}
@@ -34,6 +35,7 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSh
 	public void ShowAd()
 	{
 		Advertisement.Show(_adUnitId, this);
+		Debug.Log("ShowAd");
 	}
 
 	#region LoadCallback
@@ -71,7 +73,7 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSh
 
 	public IEnumerator InterstitialDelayShow()
 	{
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(1f);
 		ShowAd();
 		//MapCompletion.Instance.CountLvlFinished++;
 		//MapCompletion.SaveLvlFinished();
