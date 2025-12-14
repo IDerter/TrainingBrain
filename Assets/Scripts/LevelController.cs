@@ -11,10 +11,11 @@ public class LevelController : MonoBehaviour
     public int sceneIndex; //на каком лвл находимся
     public int levelComplete; //сколько лвл прошел игрок
     static int winlvl = 0;
+
+
     // Use this for initialization
     void Start()
     {
-        Advertisement.Initialize("3575188", false);
         if (instance == null)
         {
             instance = this;
@@ -32,16 +33,14 @@ public class LevelController : MonoBehaviour
         }
         else
         {
-            //if(levelComplete< sceneIndex)
-            //{
             winlvl++;
             if (winlvl % 3 == 0)
-                {
-                   ShowUnityAd();
-                }
-                PlayerPrefs.SetInt("LevelComplete", sceneIndex);
+            {
+                AdsManager.Instance._interstitialAds.ShowInterstitialAd();
+            }
+
+            PlayerPrefs.SetInt("LevelComplete", sceneIndex);
             Invoke("NextLevel", 0f);
-            // }
         }
     }
    public void NextLevel()
@@ -51,10 +50,5 @@ public class LevelController : MonoBehaviour
    public void LoadMainMenu()
     {
         SceneManager.LoadScene("Menu");
-    }
-
-    public void ShowUnityAd()
-    {
-        Advertisement.Show("3575188");
     }
 }

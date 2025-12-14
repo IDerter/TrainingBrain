@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Advertisements;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour, IUnityAdsInitializationListener, IUnityAdsLoadListener, IUnityAdsShowListener
+public class GameManager : SingletonBase<GameManager>
 {
     public GameObject panel;
     public GameObject gameOverCanvas;
@@ -30,18 +30,11 @@ public class GameManager : MonoBehaviour, IUnityAdsInitializationListener, IUnit
     public Button level7B;
     public int levelComplete;
 
-    private string gameId = "3575188";
-    private string interstitialAd = "Android_Interstitial";
-    private bool adsInitialized = false;
-    private bool waitingForAd = false;
-    private bool adLoaded = false;
 
     private void Start()
     {
         Screen.orientation = ScreenOrientation.Portrait;
         Time.timeScale = 1;
-
-        InitializeAds();
 
         levelComplete = PlayerPrefs.GetInt("LevelComplete");
 
@@ -129,94 +122,6 @@ public class GameManager : MonoBehaviour, IUnityAdsInitializationListener, IUnit
         }
     }
 
-    private void InitializeAds()
-    {
-        Debug.Log("InitializeAds start");
-        if (!Advertisement.isInitialized && Advertisement.isSupported)
-        {
-            Advertisement.Initialize(gameId, false, this);
-        }
-        else
-        {
-            adsInitialized = true;
-            Debug.Log("Загружаем рекламу после инициализации");
-            Advertisement.Load(interstitialAd, this);
-        }
-    }
-
-    public void OnInitializationComplete()
-    {
-        Debug.Log("Ads initialization complete");
-        adsInitialized = true;
-        Advertisement.Load(interstitialAd, this);
-    }
-
-    public void OnInitializationFailed(UnityAdsInitializationError error, string message)
-    {
-        Debug.Log($"Ads initialization failed: {error} - {message}");
-        adsInitialized = false;
-    }
-
-    public void OnUnityAdsAdLoaded(string placementId)
-    {
-        Debug.Log($"Ad loaded: {placementId}");
-        adLoaded = true;
-    }
-
-    public void OnUnityAdsFailedToLoad(string placementId, UnityAdsLoadError error, string message)
-    {
-        Debug.Log($"Error loading ad {placementId}: {error} - {message}");
-        adLoaded = false;
-        // Пытаемся загрузить снова через 2 секунды
-        StartCoroutine(ReloadAdAfterDelay(2f));
-    }
-
-    private IEnumerator ReloadAdAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        Advertisement.Load(interstitialAd, this);
-    }
-
-    public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
-    {
-        Debug.Log($"Error showing ad {placementId}: {error} - {message}");
-        adLoaded = false;
-        Advertisement.Load(interstitialAd, this);
-
-        // Если реклама не показалась, все равно продолжаем
-        if (waitingForAd)
-        {
-            waitingForAd = false;
-            CompleteReplay();
-        }
-    }
-
-    public void OnUnityAdsShowStart(string placementId)
-    {
-        Debug.Log("Ad show start");
-        Time.timeScale = 0; // Останавливаем игру на время показа рекламы
-    }
-
-    public void OnUnityAdsShowClick(string placementId)
-    {
-        Debug.Log("Ad clicked");
-    }
-
-    public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
-    {
-        Debug.Log("Ad show complete");
-        Time.timeScale = 1; // Возобновляем игру
-        adLoaded = false;
-        Advertisement.Load(interstitialAd, this);
-
-        // Завершаем перезагрузку уровня после показа рекламы
-        if (waitingForAd)
-        {
-            waitingForAd = false;
-            CompleteReplay();
-        }
-    }
-
     public void LoadTo(int level)
     {
         SceneManager.LoadScene(level);
@@ -234,16 +139,14 @@ public class GameManager : MonoBehaviour, IUnityAdsInitializationListener, IUnit
         gameOverCanvas.SetActive(false);
         Debug.Log($"До показа рекламы {numberdeaths}");
 
-        // Проверяем, нужно ли показывать рекламу и загружена ли она
-        if (numberdeaths % 2 == 0 && adLoaded)
+        // Проверяем, нужно ли показывать рекламу
+        if (numberdeaths % 2 == 0)
         {
-            Debug.Log("Показываем рекламу");
-            waitingForAd = true;
-            ShowUnityAd();
+           AdsManager.Instance._interstitialAds.ShowInterstitialAd();
         }
         else
         {
-            // Если реклама не загружена или не нужно показывать, сразу перезагружаем уровень
+            // Если рекламу показывать не нужно, сразу перезагружаем уровень
             CompleteReplay();
         }
     }
@@ -253,11 +156,6 @@ public class GameManager : MonoBehaviour, IUnityAdsInitializationListener, IUnit
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void ShowUnityAd()
-    {
-        Debug.Log("ShowUnityAd");
-        Advertisement.Show(interstitialAd, this);
-    }
 
     IEnumerator WaitAndPrint(float waitTime)
     {
@@ -321,9 +219,11 @@ public class GameManager : MonoBehaviour, IUnityAdsInitializationListener, IUnit
         playbutton.SetActive(false);
         exitbutton.SetActive(false);
         settingsbutton.SetActive(false);
-        panel.SetActive(true);
-        volume1button.SetActive(true);
-        volume2button.SetActive(true);
+		panel.SetActive(true);
+        if (volume1button != null)
+		    volume1button?.SetActive(true);
+        if (volume2button != null)
+            volume2button?.SetActive(true);
     }
 
     public void ExitPanel1()
