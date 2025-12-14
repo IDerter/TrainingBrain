@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
-using UnityEngine.Monetization;
 using UnityEngine.UI;
+
 public class OnClickButton: MonoBehaviour {
     public bool PlayerTimer = false;
     public int timeint = 0;

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
-using UnityEngine.Monetization;
 using UnityEngine.UI;
 
 public class OnClickButton6 : MonoBehaviour {
@@ -239,7 +238,7 @@ public class OnClickButton6 : MonoBehaviour {
             if ((a == 4) && (PlayerPrefs.HasKey("Score5") == false))
             {
                 //timeStart = 0f;
-                Debug.Log("Нажал неправильно и нет правильного ответа");
+                //Debug.Log("Нажал неправильно и нет правильного ответа");
                 PlayerTimer = false;
                 gameManager.GameOver();
                 timer.SetActive(false);
@@ -255,7 +254,7 @@ public class OnClickButton6 : MonoBehaviour {
             {
                 if (a == 4)
                 {
-                    Debug.Log("Сохраненный результат есть и игрок проиграл");
+                    //Debug.Log("Сохраненный результат есть и игрок проиграл");
                     timer.SetActive(false);
                     timertext.SetActive(false);
                     gameManager.GameOver();

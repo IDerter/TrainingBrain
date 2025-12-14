@@ -35,6 +35,24 @@
 			<ua>Entrenamiento de velocidad y memoria</ua>
 		</Translates>
 	</Key>
+
+	<Key Name="Google Play Services недоступны.">
+		<Translates>
+			<en-us>Google Play Services are unavailable. Check:
+• Internet connection
+• Google Play Services availability
+• Sign in to your Google account on the device</en-us>
+			<ru>Google Play Services недоступны. Проверьте:
+• Подключение к интернету
+• Наличие Google Play Services
+• Вход в Google аккаунт на устройстве</ru>
+			<ua>Los servicios de Google Play no están disponibles. Comprueba:
+• Conexión a internet
+• Disponibilidad de los servicios de Google Play
+• Inicia sesión en tu cuenta de Google en el dispositivo</ua>
+		</Translates>
+	</Key>
+
 	<Key Name="Нажмите на цвета в правильной последовательности">
 		<Translates>
 			<en-us>Click on the colors in the correct sequence</en-us>
