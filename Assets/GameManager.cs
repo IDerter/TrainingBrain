@@ -139,6 +139,7 @@ public class GameManager : SingletonBase<GameManager>
         gameOverCanvas.SetActive(false);
         Debug.Log($"До показа рекламы {numberdeaths}");
 
+        AnalyticsManager.Instance.RestartLevelNewRegime(numberdeaths);
         // Проверяем, нужно ли показывать рекламу
         if (numberdeaths % 2 == 0)
         {

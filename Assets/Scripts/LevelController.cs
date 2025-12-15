@@ -25,6 +25,7 @@ public class LevelController : MonoBehaviour
     }
     public void isEndGame()
     {
+        AnalyticsManager.Instance.NextLevelStats(sceneIndex);
         if (sceneIndex == 8)
         {
             Debug.Log("End");
@@ -43,11 +44,13 @@ public class LevelController : MonoBehaviour
             Invoke("NextLevel", 0f);
         }
     }
-   public void NextLevel()
+
+    public void NextLevel()
     {
         SceneManager.LoadScene(sceneIndex + 1);
     }
-   public void LoadMainMenu()
+
+    public void LoadMainMenu()
     {
         SceneManager.LoadScene("Menu");
     }
